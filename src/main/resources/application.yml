@@ -1,0 +1,60 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: future
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    servlet:
+      content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+  redis:
+    host: 120.55.192.40
+    port: 6379
+    password: vivianus
+  #接口返回对象中的日期格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: true
+  data:
+    mongodb:
+      database: xmsp
+      host: 120.55.192.40
+      password: 123456
+      port: 27017
+      username: root
+  devtools:
+    restart:
+      #热部署生效
+      enabled: true
+      #设置重启的目录
+      additional-paths: src/main/java
+      #classpath目录下的WEB-INF文件夹内容修改不重启
+      exclude: WEB-INF/**
+server:
+  servlet:
+    context-path: /${spring.application.name}
+#分页配置
+pagehelper:
+  supportMethodsArguments: true
+  reasonable: true
+  helperDialect: mysql
+  params: count=countSql
+
+#引入日志文件
+logging:
+  config: classpath:config/logback-spring.xml
+#token配置
+token:
+  #token失效时间（不是refreshToken）(这是自定义的)(秒)
+  expirationSeconds: 3600
+  #默认7天登录有效(根据业务更改)
+  validTime: 7

@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://120.55.192.40:3306/future_jpa?autoReconnect=true&characterEncoding=utf-8&allowMultiQueries=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+server:
+  port: 8089
+
