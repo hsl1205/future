@@ -8,7 +8,7 @@ class SpringDataJpaApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println("测试git回退1");
+        System.out.println("测试git回退2");
     }
 
 }
