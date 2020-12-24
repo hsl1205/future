@@ -9,7 +9,7 @@ class SpringDataJpaApplicationTests {
 
     @Test
     void contextLoads() {
-        //未commit的代码直接在log中undo commit
+        //未commit的代码直接在log中undo commit 或直接mixed
         System.out.println("未commit的代码直接在log中undo commit");
         //本地保留修改的代码（工作区）  暂存区和commit的代码回退到指定版本
         System.out.println("Mixed（默认）：它回退到某个版本，本地会保留源码，回退commit和index file信息，若要提交重新commit");
