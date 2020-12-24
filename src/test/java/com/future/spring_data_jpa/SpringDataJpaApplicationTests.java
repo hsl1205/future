@@ -1,5 +1,6 @@
 package com.future.spring_data_jpa;
 
+import com.future.spring_data_jpa.pdf.untemplates.PdfTemplates;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -18,4 +19,9 @@ class SpringDataJpaApplicationTests {
         System.out.println("Hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容");
     }
 
+    @Test
+    void pdfDemo() {
+        PdfTemplates pdfTemplates = new PdfTemplates();
+        pdfTemplates.demo();
+    }
 }
