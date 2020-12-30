@@ -133,7 +133,7 @@ public class RedisUtil {
      * 查询该key下所有值
      *
      * @param key 查询的key
-     * @return Map<HK, HV>
+     * @return Map的键值对
      */
     public Object hget(String key) {
         return redisTemplate.opsForHash().entries(key);

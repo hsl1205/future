@@ -94,8 +94,8 @@ public class SysUser implements UserDetails,  Serializable {
 
     /**
      * 重写equals和hashcode方法
-     * @param obj
-     * @return
+     * @param obj 用户对象
+     * @return 返回重写后的用户名
      */
     @Override
     public boolean equals(Object obj) {

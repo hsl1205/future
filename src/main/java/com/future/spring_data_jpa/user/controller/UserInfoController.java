@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.FileAlreadyExistsException;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
@@ -40,8 +41,8 @@ public class UserInfoController {
 
     /**
      * 添加用户
-     * @param sysUser
-     * @return
+     * @param sysUser  用户信息
+     * @return   返回创建后的页面信息
      */
     @ApiOperation(value = "新增用户信息")
     @PostMapping

@@ -34,7 +34,7 @@ public class DateUtil {
     }
 
     /**
-     * 日期比较，如果s>=e 返回true 否则返回false
+     * 日期比较，如果s大于等于e 返回true 否则返回false
      * @param s
      * @param e
      * @return

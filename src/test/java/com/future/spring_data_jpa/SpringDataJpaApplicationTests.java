@@ -1,10 +1,13 @@
 package com.future.spring_data_jpa;
 
 import com.future.spring_data_jpa.pdf.untemplates.PdfTemplates;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import java.util.*;
 
 @SpringBootTest
+@Slf4j
 class SpringDataJpaApplicationTests {
 
     @Test
@@ -23,5 +26,34 @@ class SpringDataJpaApplicationTests {
     void pdfDemo() {
         PdfTemplates pdfTemplates = new PdfTemplates();
         pdfTemplates.demo();
+    }
+
+    /***
+     * @Description
+     * 吸血鬼数字
+     * @return {@link }
+     * @Date 2020/12/28 14:42
+     * @Author huangsl
+     */
+    @Test
+    public void xxgNum() {
+        TreeSet<Integer> set = new TreeSet<Integer>();
+        for(int i=10; i<100; i++) {
+            for (int j=10; j<100; j++) {
+                if(i%10 == 0 && j%10 == 0){
+                    continue;
+                }
+                String[] a = String.valueOf(i+""+j).split("");
+                String[] b = String.valueOf(i*j).split("");
+                Arrays.sort(a);
+                Arrays.sort(b);
+                if(Arrays.equals(a,b)){
+                    set.add(i*j);
+                }
+            }
+        }
+        for (Integer integer : set) {
+            System.out.println(integer);
+        }
     }
 }

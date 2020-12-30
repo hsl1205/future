@@ -53,7 +53,10 @@ public class JwtTokenUtil {
     }
 
     /**
-     * @deprecation: 解析token,获得subject中的信息
+     * 解析token,获得subject中的信息
+     * @param token token
+     * @param salt 盐
+     * @return subject信息
      */
     public static String parseToken(String token, String salt) {
         String subject = null;
