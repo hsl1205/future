@@ -4,7 +4,13 @@ import com.future.spring_data_jpa.pdf.untemplates.PdfTemplates;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.util.*;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.TreeSet;
 
 @SpringBootTest
 @Slf4j
@@ -55,5 +61,84 @@ class SpringDataJpaApplicationTests {
         for (Integer integer : set) {
             System.out.println(integer);
         }
+    }
+
+    @Test
+    public void demo1() {
+        String path = ClassLoader.getSystemResource("static/test").getPath();
+        File file = new File(path);
+        File[] files = file.listFiles();
+        if(files != null) {
+            for (File file1 : files) {
+                System.out.println(file1);
+            }
+        }
+    }
+
+    /***
+     * @Description
+     *一行一行读取
+     * @return {@link }
+     * @Date 2021/1/29 15:42
+     * @Author huangsl
+     */
+    @Test
+    public void demo2() throws Exception {
+        //转成url后中文就可以识别了
+        String path = ClassLoader.getSystemResource("static/test/测试.txt").toURI().getPath();
+        try(FileReader fr = new FileReader(path)) {
+            BufferedReader br = new BufferedReader(fr);
+            String str = "";
+            while ((str= br.readLine())!= null) {
+                System.out.println(str);
+            }
+        }
+    }
+
+    /***
+     * @Description 文件复制
+     * @return {@link }
+     * @Date 2021/1/29 15:42
+     * @Author huangsl
+     */
+    @Test
+    public void copyFile() throws Exception {
+        String inputPath = ClassLoader.getSystemResource("static/test/测试.txt").toURI().getPath();
+        File source = new File(inputPath);
+        File destDir = new File("E:\\test");
+        File dest = new File("E:\\test\\测试.txt");
+        //上级目录必须存在
+        if(!(destDir.exists() && destDir.isDirectory())){
+            destDir.mkdirs();
+        }
+        try {
+            Files.copy(source.toPath(),dest.toPath());
+            System.out.println("文件复制成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    /***
+     * @Description
+     *Files读取纯文本内容
+     * @return {@link }
+     * @Date 2021/2/1 11:11
+     * @Author huangsl
+     */
+    @Test
+    public void demo4() throws IOException {
+        List<String> str = Files.readAllLines(Paths.get("E:\\test\\测试.txt"));
+        for (String s : str) {
+            System.out.println(s);
+        }
+    }
+
+    @Test
+    public void demo5() {
+        int[] arr = {1,100,214,14425,3356,414,2536,67,6876};
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

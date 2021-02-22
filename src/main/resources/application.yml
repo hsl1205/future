@@ -12,9 +12,9 @@ spring:
     suffix: .html
     encoding: UTF-8
   redis:
-    host: 120.55.192.40
+    host: 127.0.0.1
     port: 6379
-    password: vivianus
+#    password: vivianus
   #接口返回对象中的日期格式化
   jackson:
     time-zone: GMT+8
@@ -27,7 +27,7 @@ spring:
   data:
     mongodb:
       database: xmsp
-      host: 120.55.192.40
+      host: 127.0.0.1
       password: 123456
       port: 27017
       username: root
