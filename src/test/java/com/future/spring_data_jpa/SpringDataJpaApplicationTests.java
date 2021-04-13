@@ -20,6 +20,6 @@ class SpringDataJpaApplicationTests {
     @Test
     void useGit() {
         System.out.println("学习如何使用git");
-        System.out.println("版本2");
+        System.out.println("版本3");
     }
 }
