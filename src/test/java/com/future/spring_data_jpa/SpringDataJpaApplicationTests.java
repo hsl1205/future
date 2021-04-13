@@ -16,4 +16,10 @@ class SpringDataJpaApplicationTests {
         PdfTemplates pdfTemplates = new PdfTemplates();
         pdfTemplates.demo();
     }
+
+    @Test
+    void useGit() {
+        System.out.println("学习如何使用git");
+        System.out.println("版本1");
+    }
 }
