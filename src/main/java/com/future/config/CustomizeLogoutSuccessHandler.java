@@ -35,13 +35,16 @@ public class CustomizeLogoutSuccessHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         ContentResultForm<Object> contentResultForm = new ContentResultForm<>(true, null, "USER_LOGOUT_SUCCESS");
         String authHeader = httpServletRequest.getHeader("Authorization");
+        httpServletResponse.setContentType("text/json;charset=utf-8");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             final String authToken = authHeader.substring("Bearer ".length());
             //将token放入黑名单中
             redisUtil.hset("blacklist", authToken, DateUtil.getTime());
             log.info("token：{}已加入redis黑名单",authToken);
+            log.info("用户登出成功！");
+            httpServletResponse.getWriter().write(JSONUtil.toJsonStr(contentResultForm));
+        }else {
+            httpServletResponse.getWriter().write(JSONUtil.toJsonStr(new ContentResultForm<>(false,null,"USER_LOGOUT_FAILED")));
         }
-        httpServletResponse.setContentType("text/json;charset=utf-8");
-        httpServletResponse.getWriter().write(JSONUtil.toJsonStr(contentResultForm));
     }
 }
