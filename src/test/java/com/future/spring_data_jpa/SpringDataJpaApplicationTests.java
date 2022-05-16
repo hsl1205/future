@@ -1,13 +1,16 @@
 package com.future.spring_data_jpa;
 
 import com.future.spring_data_jpa.pdf.untemplates.PdfTemplates;
+import com.future.spring_data_jpa.user.entity.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
@@ -33,6 +36,7 @@ class SpringDataJpaApplicationTests {
         PdfTemplates pdfTemplates = new PdfTemplates();
         pdfTemplates.demo();
     }
+
 
     /***
      * @Description
@@ -140,5 +144,27 @@ class SpringDataJpaApplicationTests {
         int[] arr = {1,100,214,14425,3356,414,2536,67,6876};
         Arrays.sort(arr);
         System.out.println(Arrays.toString(arr));
+    }
+
+    @Test
+    public void demo6() {
+        ArrayList<UserInfo> list = new ArrayList<>();
+        for (int i =0; i<10; i++) {
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserId("1");
+            userInfo.setAddress("beijing");
+            list.add(userInfo);
+        }
+        list.forEach(userInfo -> System.out.println(userInfo.toString()));
+    }
+
+    @Test
+    public void demo7() {
+        int[] nums = {0,0,1,1,1,2,2,3,3,4};
+        for (int i=0;i<nums.length;i++) {
+            if (nums[i] == nums[i++]) {
+
+            }
+        }
     }
 }

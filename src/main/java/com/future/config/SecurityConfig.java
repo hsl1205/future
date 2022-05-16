@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -73,7 +74,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().authenticationEntryPoint(authenticationEntryPoint)
 
                 .and().authorizeRequests()//定义哪些URL需要被保护、哪些不需要被保护
-
                 .anyRequest()//任何请求,登录后可以访问
                 .access("@rbacauthorityservice.hasPermission(request,authentication)") // RBAC 动态 url 认证
 
@@ -89,19 +89,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().accessDeniedHandler(accessDeniedHandler); // 无权访问 JSON 格式的数据
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class); // JWT Filter
 
-        //回话管理
-//        http
-//                .sessionManagement()
-//                .maximumSessions(1)//同一账号同时登录最大用户数
-//                .maxSessionsPreventsLogin(true)//踢出
-//                .expiredSessionStrategy(sessionInformationExpiredStrategy);//会话失效(账号被挤下线)处理逻辑
     }
 
 
     @Override
+    public void configure(WebSecurity web) {
+        // 放行swagger2
+        web.ignoring().antMatchers("/swagger-ui.html","/webjars/**","/v2/**","/swagger-resources/**","/userInfo/**");
+    }
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // 加入自定义的安全认证
-//        auth.authenticationProvider(provider);
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
